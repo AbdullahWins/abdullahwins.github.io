@@ -6,35 +6,146 @@
     <title>AbdullahWins</title>
     <style>
       body {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          margin: 0;
-          background-color: #ffdf00;
-          font-family: Comic Sans MS, cursive, sans-serif;
-          color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #ffdf00;
+        font-family: Comic Sans MS, cursive, sans-serif;
+        color: #333;
+        text-align: center;
+        padding: 20px;
       }
       h1 {
-          font-size: 52px;
-          margin-bottom: 34px;
+        font-size: 52px;
+        margin-bottom: 20px;
+        max-width: 350px;
+        animation: spin 3s linear infinite;
+      }
+      h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        color: #ff6600;
+        text-shadow: 2px 2px #000;
+      }
+      p {
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+      .container {
+        display: grid;
+        gap: 20px;
+        padding: 0 20px;
+        width: 100%;
+        max-width: 1200px;
+      }
+      .container p {
+        grid-column: span 1;
+        text-align: center;
+      }
+      .image-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        background: #fff;
+        padding: 10px;
+        border-radius: 15px;
+        border: 2px solid #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .image-wrapper div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
       }
       img {
-          width: 300px;
-          height: 300px;
-          margin: 20px;
-          border: 5px solid #333;
-          box-shadow: 0 0 10px rgba(0,0,0,0.5);
-          border-radius: 15px;
+        width: 100%;
+        max-width: 350px;
+        height: 250px;
+        object-fit: cover;
+        border: 5px solid #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        transition: transform 0.3s;
+      }
+      img:hover {
+        transform: scale(1.1);
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @media (min-width: 600px) {
+        .container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .container p {
+          grid-column: span 2;
+        }
+      }
+      @media (min-width: 1024px) {
+        .container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .container p {
+          grid-column: span 3;
+        }
+      }
+      footer {
+        margin-top: 60px;
+        text-align: center;
+        font-size: 20px;
+      }
+      footer a {
+        color: #ff6600;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      footer a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
   <body>
-    <h1>I can't code</h1>
-    <p>Here's actual footage of me coding:</p>
-    <img src="./working.gif" alt="Meme 1" />
-    <p>This one too:</p>
-    <img src="./typing-fast.gif" alt="Meme 2" />
+    <h1>Hi, I'm Abdullah Al MahMud</h1>
+    <h2>and I can't code (but I pretend I do)</h2>
+    <div class="container">
+      <div class="image-wrapper">
+        <div>
+          <p>Here's actual footage of me coding:</p>
+          <img src="./working.gif" alt="working" />
+        </div>
+      </div>
+      <div class="image-wrapper">
+        <div>
+          <p>Here's me trying to understand code:</p>
+          <img src="./typing.gif" alt="typing" />
+        </div>
+      </div>
+      <div class="image-wrapper">
+        <div>
+          <p>Here's me when the test fails:</p>
+          <img src="./rage.gif" alt="rage" />
+        </div>
+      </div>
+    </div>
+    <footer>
+      Visit my
+      <a href="https://github.com/AbdullahWins" target="_blank"
+        >GitHub account</a
+      >
+      &#128553;
+    </footer>
   </body>
 </html>
