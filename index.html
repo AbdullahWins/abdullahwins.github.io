@@ -17,6 +17,7 @@
         text-align: center;
         padding: 20px;
         overflow-x: hidden; /* Prevents horizontal overflow */
+        cursor: none; /* Hide the default cursor */
       }
 
       h1 {
@@ -115,6 +116,28 @@
         transform: scale(1.1);
       }
 
+      /* Custom animated cursor */
+      .custom-cursor {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: url("./assets/pointers/crybanana.png") no-repeat center
+          center;
+        background-size: contain;
+        pointer-events: none;
+        z-index: 1000;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes cursorAnimation {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: -500px 0; /* Adjust based on your sprite sheet */
+        }
+      }
+
       @keyframes spin {
         0% {
           transform: rotate(0deg);
@@ -186,7 +209,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="window.scrollTo(0, 0)">
     <h1>Hi, I'm Abdullah Al MahMud</h1>
     <h2>and I can't code (but I pretend I do)</h2>
     <div class="container">
@@ -228,12 +251,26 @@
     <!-- Sound Effects -->
     <audio id="card-sound" src="./assets/sounds/click.mp3"></audio>
 
+    <div class="custom-cursor" id="custom-cursor"></div>
+
     <script>
+      // Ensure the page starts at the top on load
+      window.addEventListener("load", () => {
+        window.scrollTo(0, 0);
+      });
+
       // Play sound on card click
       document.querySelectorAll(".image-wrapper").forEach((card) => {
         card.addEventListener("click", () => {
           document.getElementById("card-sound").play();
         });
+      });
+
+      // Custom cursor movement
+      document.addEventListener("mousemove", (e) => {
+        const cursor = document.getElementById("custom-cursor");
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
       });
     </script>
   </body>
