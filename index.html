@@ -17,6 +17,7 @@
         color: #333;
         text-align: center;
         padding: 20px;
+        overflow: hidden; /* Prevents scrollbar from appearing due to animations */
       }
       h1 {
         font-size: 52px;
@@ -57,13 +58,31 @@
         border-radius: 15px;
         border: 2px solid #333;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        position: relative;
+        transition: transform 0.3s, background-color 0.3s;
       }
-      .image-wrapper div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
+      .image-wrapper:hover {
+        background-color: #f0f0f0;
+        transform: scale(1.05);
+      }
+      .image-wrapper:active {
+        transform: scale(0.95);
+      }
+      .image-wrapper:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        background: url("./sound-effect.gif") no-repeat center center;
+        background-size: contain;
+        opacity: 0;
+        transition: opacity 0.3s;
+        transform: translate(-50%, -50%);
+      }
+      .image-wrapper:active:before {
+        opacity: 1;
       }
       img {
         width: 100%;
@@ -124,19 +143,19 @@
       <div class="image-wrapper">
         <div>
           <p>Here's actual footage of me coding:</p>
-          <img src="./working.gif" alt="working" />
+          <img src="./assets/gifs/working.gif" alt="working" />
         </div>
       </div>
       <div class="image-wrapper">
         <div>
           <p>Here's me trying to understand code:</p>
-          <img src="./typing.gif" alt="typing" />
+          <img src="./assets/gifs/typing.gif" alt="typing" />
         </div>
       </div>
       <div class="image-wrapper">
         <div>
           <p>Here's me when the test fails:</p>
-          <img src="./rage.gif" alt="rage" />
+          <img src="./assets/gifs/rage.gif" alt="rage" />
         </div>
       </div>
     </div>
@@ -147,5 +166,25 @@
       >
       &#128553;
     </footer>
+
+    <!-- Background Music -->
+    <audio
+      id="background-music"
+      src="./assets/sounds/background.mp3"
+      autoplay
+      loop
+    ></audio>
+
+    <!-- Sound Effects -->
+    <audio id="card-sound" src="./assets/sounds/click.mp3"></audio>
+
+    <script>
+      // Play sound on card click
+      document.querySelectorAll(".image-wrapper").forEach((card) => {
+        card.addEventListener("click", () => {
+          document.getElementById("card-sound").play();
+        });
+      });
+    </script>
   </body>
 </html>
